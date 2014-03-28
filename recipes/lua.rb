@@ -42,6 +42,6 @@ bash 'extract_luajit' do
   not_if { ::File.exists?(luajit_extract_path) }
 end
 
-package 'lua-devel' do
+package node['nginx']['lua']['devel_package'] do
   action :install
 end

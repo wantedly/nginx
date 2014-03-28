@@ -23,6 +23,16 @@ default['nginx']['lua']['version']  = '0.8.7'
 default['nginx']['lua']['url']      = "https://github.com/chaoslawful/lua-nginx-module/archive/v#{node['nginx']['lua']['version']}.tar.gz"
 default['nginx']['lua']['checksum'] = '4b9be3c159b9c884a38e044e07aaf4d06bd2893977d0b0dae02c124d8e907f93'
 
+case node['platform_family']
+when 'debian'
+  default['nginx']['lua']['devel_package'] = 'liblua5.1-0-dev'
+when 'rhel', 'fedora'
+  default['nginx']['lua']['devel_package'] = 'lua-devel'
+else
+  default['nginx']['lua']['devel_package'] = 'lua-devel'
+end
+
 default['nginx']['luajit']['version']  = '2.0.2'
 default['nginx']['luajit']['url']	     = "http://luajit.org/download/LuaJIT-#{node['nginx']['luajit']['version']}.tar.gz"
 default['nginx']['luajit']['checksum'] = 'c05202974a5890e777b181908ac237625b499aece026654d7cc33607e3f46c38'
+
