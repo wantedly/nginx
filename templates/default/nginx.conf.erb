@@ -74,8 +74,15 @@ http {
 
   <% if node['nginx']['enable_rate_limiting'] -%>
   limit_req_zone $binary_remote_addr zone=<%= node['nginx']['rate_limiting_zone_name'] %>:<%= node['nginx']['rate_limiting_backoff'] %> rate=<%= node['nginx']['rate_limit'] %>;
-
   <% end -%>
+
+  <% if node['nginx']['cache_path'] -%>
+  proxy_cache_path <%= node['nginx']['cache_path']['path'] %> levels=<%= node['nginx']['cache_path']['levels'] %> keys_zone=<%= node['nginx']['cache_path']['keys_zone'] %> max_size=<%= node['nginx']['cache_path']['max_size'] %> inactive=<%= node['nginx']['cache_path']['inactive']%>;
+  <% end -%>
+  <% if node['nginx']['cache_temp_path'] -%>
+  proxy_temp_path  <%= node['nginx']['cache_temp_path'] %>;
+  <% end -%>
+
   include <%= node['nginx']['dir'] %>/conf.d/*.conf;
   include <%= node['nginx']['dir'] %>/sites-enabled/*;
 }

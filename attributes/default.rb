@@ -105,3 +105,10 @@ default['nginx']['types_hash_bucket_size'] = 64
 default['nginx']['proxy_read_timeout']      = nil
 default['nginx']['client_body_buffer_size'] = nil
 default['nginx']['client_max_body_size']    = nil
+
+default['nginx']['cache_path']['path']      = nil
+default['nginx']['cache_path']['levels']    = nil
+default['nginx']['cache_path']['keys_zone'] = nil
+default['nginx']['cache_path']['max_size']  = nil
+default['nginx']['cache_path']['inactive']  = nil
+default['nginx']['cache_temp_path']         = nil
